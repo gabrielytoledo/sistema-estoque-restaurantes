@@ -23,13 +23,33 @@ while True:
     opcao = input('Escolha uma opção: ')
 
     if opcao == '1':
-        nome = input('Nome do produto: ')
+        nome = input('Nome do produto: ').strip()
+        if nome == '':
+            print('Escreva um nome válido')
+            continue
+
+        produto_ja_existe = False
+        for item in estoque:
+            if item['nome'].lower() == nome.lower():
+                produto_ja_existe = True
+
+        if produto_ja_existe:
+            print('Esse poduto já esta cadastrado')
+            continue
+
         try:
             quantidade = int(input('Quantidade: '))
+            if quantidade <= 0:
+                print('Digite apenas numeros maiores que 0')
+                continue
             estoque_minimo = int(input('Qual estoque minimo desejado? '))
+            if estoque_minimo <= 0:
+                print('Digite apenas numeros maiores que 0')
+                continue
         except ValueError:
             print('Escreva apenas numeros válidos')  
             continue
+
 
         novo_produto = {
             'nome': nome,
@@ -50,15 +70,28 @@ while True:
     elif opcao == '3':
         for indice, produto in enumerate(estoque, start=1):
             print(indice, produto['nome'])
-        escolha = int(input('Qual produto deseja selecionar? '))
+
+        try:
+            escolha = int(input('Qual produto deseja selecionar? '))
+        except ValueError:
+            print('Selecione apenas numeros existentes na lista')
+            continue
         escolha = escolha - 1
+
+        if escolha < 0 or escolha >= len(estoque):
+            print('Produto inexistente')
+            continue
         produto = estoque[escolha]
         print(produto['nome'])
 
         try:
             quantidade_produto_consumida = int(input('Qual a quantidade de produto que foi consumida? '))
         except ValueError:
-            print('Escreva apenas numeros válidos')
+            print('Digite apenas numeros válidos')
+            continue
+
+        if quantidade_produto_consumida <= 0: 
+            print('Digite apenas numeros maiores que 0')
             continue
         
         if quantidade_produto_consumida > produto["quantidade"]:
@@ -74,3 +107,6 @@ while True:
     elif opcao == '4':
         print('Saindo do sistema...')
         break
+
+    else:
+        print('Opção inválida!')
