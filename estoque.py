@@ -44,6 +44,8 @@ while True:
         else:
             produto["quantidade"] = produto["quantidade"] - quantidade_produto_consumida
             print('Consumo registrado!')
+            if produto["quantidade"] <= produto["estoque_minimo"]:
+                print(f'{produto["nome"]} está no estoque mínimo ou abaixo dele. Quantidade atual: {produto["quantidade"]}')
             
         
 
