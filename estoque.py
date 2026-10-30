@@ -24,8 +24,12 @@ while True:
 
     if opcao == '1':
         nome = input('Nome do produto: ')
-        quantidade = int(input('Quantidade: '))
-        estoque_minimo = int(input('Qual estoque minimo desejado? '))
+        try:
+            quantidade = int(input('Quantidade: '))
+            estoque_minimo = int(input('Qual estoque minimo desejado? '))
+        except ValueError:
+            print('Escreva apenas numeros válidos')  
+            continue
 
         novo_produto = {
             'nome': nome,
@@ -51,8 +55,12 @@ while True:
         produto = estoque[escolha]
         print(produto['nome'])
 
-        quantidade_produto_consumida = int(input('Qual a quantidade de produto que foi consumida? '))
-    
+        try:
+            quantidade_produto_consumida = int(input('Qual a quantidade de produto que foi consumida? '))
+        except ValueError:
+            print('Escreva apenas numeros válidos')
+            continue
+        
         if quantidade_produto_consumida > produto["quantidade"]:
             print('Estoque insuficiente')
         else:
@@ -60,7 +68,7 @@ while True:
             print('Consumo registrado!')
             if produto["quantidade"] <= produto["estoque_minimo"]:
                 print(f'{produto["nome"]} está no estoque mínimo ou abaixo dele. Quantidade atual: {produto["quantidade"]}')
-            
+       
         
 
     elif opcao == '4':
