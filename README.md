@@ -1,140 +1,65 @@
-# 🍽️ Sistema de Estoque para Restaurantes
+#  Sistema de Estoque para Restaurantes
 
 ![Status](https://img.shields.io/badge/status-em%20desenvolvimento-7C3AED?style=for-the-badge)
 ![Python](https://img.shields.io/badge/Python-7C3AED?style=for-the-badge&logo=python&logoColor=white)
 ![SQLite](https://img.shields.io/badge/SQLite-8B5CF6?style=for-the-badge&logo=sqlite&logoColor=white)
 ![pytest](https://img.shields.io/badge/pytest-A78BFA?style=for-the-badge&logo=pytest&logoColor=white)
 
-Sistema de controle de estoque para restaurantes, feito em Python, com cadastro de produtos, histórico de movimentações, controle de lotes e validade e regra **FEFO** (primeiro que vence, primeiro que sai).
+Sistema de Estoque para Restaurantes
 
-> 🚧 **Projeto em desenvolvimento.** Estou construindo em etapas e o histórico de commits mostra a evolução. As funcionalidades abaixo estão marcadas conforme o andamento.
+Programa de terminal em Python para controlar o estoque de um restaurante: cadastrar produtos, ver o que tem, registrar o que foi consumido e receber um aviso quando algum item chega no mínimo.
 
----
+Projeto em desenvolvimento. Estou construindo por etapas e usando o histórico de commits para registrar a evolução.
 
-## 💜 Por que este projeto existe
+Por que fiz
 
-Venho da **biomedicina**, onde lote, validade e rastreabilidade fazem parte da rotina do laboratório: saber o que entrou, o que saiu, quando vence e quem foi o responsável. Ao migrar para a área de tecnologia, quis transformar esse olhar em código. Um estoque de restaurante tem os mesmos problemas, e por isso escolhi esse tema para aprender Python, SQL e boas práticas de desenvolvimento.
+Venho da biomedicina e sempre quis trabalhar com tecnologia. Gosto de computador desde criança e o que mais me atrai é poder criar um programa que resolva um problema do dia a dia e tire o trabalho repetitivo das mãos de alguém. Escolhi estoque de restaurante porque me deparei com uma situação onde um conhecido teve problemas no gerenciamento do estoque do seu estabelecimento. Vi essa situação como uma oportunidade para desenvolver meu conhecimento e pôr em prática meu aprenndizado. 
 
----
+O que ele faz hoje
+Cadastra produtos com nome, quantidade e estoque mínimo
+Lista os produtos cadastrados
+Registra o consumo de um produto e atualiza a quantidade
+Impede consumir mais do que existe em estoque
+Avisa quando a quantidade chega no estoque mínimo ou fica abaixo dele
+Valida as entradas: letras no lugar de números, valores zero ou negativos, produto que não existe na lista, nome vazio e nome repetido
+Como rodar
 
-## ✅ Funcionalidades
+Precisa do Python 3 instalado.
 
-**Em andamento**
-- [ ] Cadastro e listagem de produtos
-- [ ] Registro de consumo sem deixar o estoque ficar negativo
-- [ ] Aviso de estoque mínimo
-
-**Planejadas**
-- [ ] Entradas, saídas e ajustes com data, quantidade, motivo e responsável
-- [ ] Testes automatizados com pytest
-- [ ] Refatoração para programação orientada a objetos (`Produto`, `Lote`, `Movimentacao`, `Estoque`)
-- [ ] Fornecedores, recebimentos e controle de lotes com validade
-- [ ] Regra FEFO na saída de produtos
-- [ ] Lista de lotes vencidos e próximos do vencimento
-- [ ] Persistência de dados com SQLite
-- [ ] Relatório de consumo com pandas
-
----
-
-## 🗺️ Roadmap
-
-| Etapa | O que será feito | Status |
-|-------|------------------|--------|
-| 1 | Lógica básica do estoque (listas, dicionários, funções) | 🔄 Em andamento |
-| 2 | Regras, histórico de movimentações e testes | ⏳ Planejada |
-| 3 | Refatoração para POO | ⏳ Planejada |
-| 4 | Compras, lotes, validade e FEFO | ⏳ Planejada |
-| 5 | Banco de dados SQLite | ⏳ Planejada |
-| 6 | Relatórios e fechamento do projeto | ⏳ Planejada |
-
----
-
-## 🚀 Como rodar
-
-> Os comandos abaixo valem para a versão atual. Vou atualizá-los conforme a estrutura do projeto evoluir.
-
-**Pré-requisitos:** [Python 3.10+](https://www.python.org/downloads/) e [Git](https://git-scm.com/).
-
-```bash
-# 1. Clonar o repositório
-git clone COLE-AQUI-O-LINK-DO-REPOSITORIO
-cd estoque-restaurante
-
-# 2. Executar o programa
+bash
+git clone https://github.com/gabrielytoledo/sistema-estoque-restaurantes.git
+cd sistema-estoque-restaurantes
 python estoque.py
-```
+Exemplo de uso
 
----
+O programa já começa com Arroz e Feijão cadastrados, 10 unidades de cada e mínimo de 5. Registrando o consumo de 6 de Arroz:
 
-## 🖥️ Exemplo de uso
-
-> Substitua este trecho por um print ou pela saída real do seu terminal.
-
-```text
-=== ESTOQUE ===
+text
+===== SISTEMA DE ESTOQUE =====
 1 - Cadastrar produto
 2 - Listar produtos
-3 - Sair
+3 - Registrar consumo
+4 - Sair
+Escolha uma opção: 3
+1 Arroz
+2 Feijão
+Qual produto deseja selecionar? 1
+Arroz
+Qual a quantidade de produto que foi consumida? 6
+Consumo registrado!
+Arroz está no estoque mínimo ou abaixo dele. Quantidade atual: 4
+Limitações
 
-Escolha uma opção: 2
+Os dados ficam só na memória. Quando o programa fecha, o estoque volta ao começo. Isso vai mudar quando eu adicionar o banco de dados.
 
-Arroz | quantidade: 10 | mínimo: 5
-Feijão | quantidade: 4 | mínimo: 5
-⚠️  Atenção: Feijão está abaixo do estoque mínimo!
-```
+O que vem a seguir
+Histórico de movimentações (entradas, saídas e ajustes, com data e motivo)
+Testes automatizados com pytest
+Reorganizar o código em classes
+Controle de lotes e validade, com a regra FEFO (o lote que vence primeiro sai primeiro)
+Salvar os dados em SQLite
 
----
-
-## 🧪 Como rodar os testes
-
-Os testes entram na Etapa 2. Quando estiverem prontos:
-
-```bash
-pip install pytest
-pytest
-```
-
----
-
-## 📁 Estrutura planejada
-
-```text
-estoque-restaurante/
-├── README.md
-├── requirements.txt
-├── src/
-│   ├── modelos.py     # classes Produto, Lote, Movimentacao
-│   ├── estoque.py     # regras de negócio
-│   ├── banco.py       # acesso ao SQLite
-│   └── main.py        # menu no terminal
-├── tests/
-│   └── test_estoque.py
-└── .gitignore
-```
-
-A lógica fica separada do banco e da interface para que seja possível trocar o menu de terminal por uma API ou uma janela sem reescrever as regras.
-
----
-
-## 📚 Decisões e aprendizados
-
-*(Vou preencher conforme avançar. Exemplos do que registrar: o que foi mais difícil, o que mudaria, por que escolhi SQLite.)*
-
-- ...
-
----
-
-## 🔭 Próximos passos
-
-Depois que o núcleo estiver estável, ideias para uma segunda versão:
-
-- API de backend com FastAPI
-- Alertas de estoque baixo e de validade por e-mail
-- Interface visual
-
----
-
-## 📫 Contato
+##  Contato
 
 **Gabriely Toledo**
 [E-mail](mailto:gabrielytoledo98@gmail.com) · [GitHub](https://github.com/gabrielytoledo)
