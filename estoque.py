@@ -12,6 +12,7 @@ estoque = [
 ]
 
 
+
 while True:
     print('===== SISTEMA DE ESTOQUE =====')
     print('1 - Cadastrar produto')
@@ -21,7 +22,20 @@ while True:
 
     opcao = input('Escolha uma opção: ')
 
-    if opcao == '2':
+    if opcao == '1':
+        nome = input('Nome do produto: ')
+        quantidade = int(input('Quantidade: '))
+        estoque_minimo = int(input('Qual estoque minimo desejado? '))
+
+        novo_produto = {
+            'nome': nome,
+            'quantidade': quantidade,
+            'estoque_minimo': estoque_minimo,
+        }
+        estoque.append(novo_produto)
+        print('Produto cadastrado!')
+
+    elif opcao == '2':
         for produto in estoque:
             print(f'Nome: {produto["nome"]}')
             print(f'Quantidade: {produto["quantidade"]}')
